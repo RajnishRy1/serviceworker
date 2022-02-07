@@ -8,7 +8,6 @@ import { useHistory } from 'react-router-dom';
 import './css/Card.css'
 
 function Core() {
-
   const classes = useStyles();
   let obj =null;
 
@@ -67,6 +66,8 @@ function Core() {
             </CardContent>
             <div style={{borderSpacing:'5px'}}>
             <Button onClick={scanNow} variant="contained" color="primary">scan now</Button>
+            <br></br>
+            <Button className='install' variant="contained" color="primary">Install</Button>
             {/* <button className='add-button'> Add </button>
             <button>Add Button</button> */}
           </div>

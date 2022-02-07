@@ -2,21 +2,35 @@
 <html lang="en">
   
   <head>
+    <script>
+      var defferedPrompt;
+      var div;
 
-<!-- <script>
-    if ('serviceWorker' in navigator) {
-      // Register a service worker hosted at the root of the
-      // site using the default scope.
-      navigator.serviceWorker.register('../src/service-worker.js').then(function(registration) {
-        console.log('Service worker registration succeeded:', registration);
-      }, /*catch*/ function(error) {
-        console.log('Service worker registration failed:', error);
+      window.addEventListener('beforeinstallprompt',(e)=>{
+        e.preventDefault();
+        defferedPrompt=e;
+        console.log(defferedPrompt);
+        div = document.querySelector('.install');
+        div.style.display='block';
+        div.addEventListener('click',(e)=>{
+        div.style.display='none';
+        defferedPrompt.prompt();
+        defferedPrompt.userChoice
+        .then((choiceResult)=>{
+          if(choiceResult.outcome==='accepted'){
+            console.log('Installation Successful!');
+          }
+          else{
+            console.log('rejected');
+            div.style.display='none';
+          }
+          defferedPrompt=null;
+        });
+      }); 
       });
-    } else {
-      console.log('Service workers are not supported.');
-    }
-  </script> -->
 
+      
+    </script>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />

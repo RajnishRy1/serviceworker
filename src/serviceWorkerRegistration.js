@@ -53,6 +53,7 @@ export function register(config) {
 }
 
 function registerValidSW(swUrl, config) {
+  console.log(config);
   navigator.serviceWorker
     .register(swUrl)
     .then((registration) => {
@@ -116,6 +117,7 @@ function checkValidServiceWorker(swUrl, config) {
         });
       } else {
         // Service worker found. Proceed as normal.
+        console.log(config);
         registerValidSW(swUrl, config);
       }
     })
