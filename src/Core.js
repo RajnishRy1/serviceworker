@@ -6,6 +6,7 @@ import {startScanner,stopScanner} from './Modules/html5qr';
 import { Html5Qrcode } from 'html5-qrcode';
 import { useHistory } from 'react-router-dom';
 import './css/Card.css'
+import Front from './Modules/Front/Front';
 
 function Core() {
   const classes = useStyles();
@@ -45,35 +46,7 @@ function Core() {
   }
 
   return (
-    <Container className={classes.container}>
-      <Card>
-        <h2 className={classes.title}>Scan QR Code</h2>
-        <div>
-            <CardContent>
-              <Grid container spacing={2}>
-                <Grid item xl={4} lg={4} sm={12} xs={12} >
-                <div id="reader" width="600px"></div>
-                {/* {decodedText!=="" ? (
-                  <div>
-                  <Details detobj={decoded}></Details>
-                  <br></br>
-
-                  </div>
-                  
-                ):null} */}
-                </Grid>
-              </Grid>
-            </CardContent>
-            <div style={{borderSpacing:'5px'}}>
-            <Button onClick={scanNow} variant="contained" color="primary">scan now</Button>
-            <br></br>
-            <Button className='install' variant="contained" color="primary">Install</Button>
-            {/* <button className='add-button'> Add </button>
-            <button>Add Button</button> */}
-          </div>
-        </div>
-      </Card>
-    </Container>
+    <Front/>
   );
 }
 
