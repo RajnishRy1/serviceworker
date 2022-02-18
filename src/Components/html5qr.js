@@ -18,13 +18,13 @@ const startScanner = (obj,successCallback) =>{
     obj.start(
         {facingMode:"environment"},
         {fps:20,
-        qrbox:{ width: 200, height: 200 },
-        aspectRatio:1
+        qrbox:{ width: 150, height: 150 },
+        aspectRatio:1.5
         },
         successCallback
         ,
         (errorMessage)=>{
-            // console.log(errorMessage);
+
         }
     )
     .then(()=>{

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import image1 from './logo192.png'
 import './css/Card.css'
-import Share from './Modules/Share';
+import Share from './Components/Share';
 import { Button } from "@material-ui/core";
 
 const link = "https://jsonplaceholder.typicode.com/users/"

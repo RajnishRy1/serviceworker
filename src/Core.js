@@ -1,67 +1,53 @@
 
 import './App.css';
-import {Grid, Container, Card, CardContent, makeStyles, Button} from '@material-ui/core';
+import './css/Card.css';
+import './css/style.css';
 import React, { useEffect, useState } from 'react';
-import {startScanner,stopScanner} from './Modules/html5qr';
-import { Html5Qrcode } from 'html5-qrcode';
-import { useHistory } from 'react-router-dom';
-import './css/Card.css'
-import Front from './Modules/Front/Front';
+
+//Page Components
+import Navlist from './Components/Navigation/Navlist';
+import Storeselect from './Components/Storeselect/Storeselect';
+import Footer from './Components/Footer/Footer';
+import Cont from './Components/Container/Container';
+import Scan from './Components/Scan/Scan';
+import Pricecheck from './Components/Pricecheck/Pricecheck';
+import Signup from './Components/SignUP/Signup';
+import Loyalty from './Components/Loyalty/Loyalty';
+import Terms from './Components/Terms/Terms';
+import Profile from './Components/Profile/Profile';
+import Editprofile from './Components/Profile/Editprofile';
+import Success from './Components/Success/Success';
 
 function Core() {
-  const classes = useStyles();
-  let obj =null;
-
-  useEffect(()=>{
-    startScanning();
-  });
-
-  const successCallback=(resText,Result)=>{
-    var arr=resText.split("&");
-    var code = arr[0].split("$");
-    var code=1;
-
-    stopScanning();
-
-    //Redirect to URL with code
-    // window.location.replace("/success/"+ code);
-    let url="/product/"+ code;
-    history.push(url);
-    // ReactDOM.render(<Redirect to='/product/157589'/>,document.getElementById("reader"));
+  // const classes = useStyles();  
+  const setPageIndex=(pageIndex)=>{
+    setIndex(pageIndex);
   }
+  const pages=[
+    <Storeselect setPageIndex={setPageIndex}/>,
+    <Scan setPageIndex={setPageIndex}/>,
+    <Pricecheck setPageIndex={setPageIndex} />,
+    <Signup setPageIndex={setPageIndex}/>,
+    <Success/>,
+    <Profile/>,
+    <Editprofile/>,
+    <Terms/>,
+    <Loyalty/>
+  ]
 
-  const history = useHistory();
+  const [page,setPage] = useState(pages);
+  const [index,setIndex] = useState(0);
 
-  const startScanning=()=>{
-    obj=new Html5Qrcode("reader");
-    startScanner(obj,successCallback);
-  }
-
-  const scanNow=()=>{
-    obj.resume();
-  }
-
-  const stopScanning=()=>{
-    stopScanner(obj);
-  }
 
   return (
-    <Front/>
+    <Cont className="row">
+      <Navlist/>
+      {page[index]}
+      <Footer/>
+    </Cont>
   );
 }
 
-const useStyles = makeStyles((theme)=>({
-  container:{
-    marginTop:10
-  },
-  title:{
-    display:'flex',
-    justifyContent:'center',
-    alignItems:'center',
-    background:'#3f51b5',
-    color: '#fff',
-    padding: 20
-  }
-}));
+
 
 export default Core;
